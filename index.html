@@ -5,46 +5,54 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sistema de Gerenciamento de Listas</title>
+    <link rel="shortcut icon" href="check.png" type="image/x-icon">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
     <div id="container">
-
         <h1>Sistema de Gerenciamento de Listas</h1>
 
-        <!-- naveega nas lsitas -->
-        <div id="input">
+        <div id="white-board">
 
-            <div id="tabs">
-                <button id="tab-series">Séries</button>
-                <button id="tab-games">Games</button>
-                <button id="tab-musics">Músicas</button>
+
+            <!-- naveega nas lsitas -->
+            <div id="input">
+
+                <div id="tabs">
+                    <button id="tab-series">Séries</button>
+                    <button id="tab-games">Games</button>
+                    <button id="tab-musics">Músicas</button>
+
+                </div>
+
             </div>
-        </div>
-        <!-- adiciona e edita as listas -->
-        <div id="form-container">
-            <h2 id="form-title">Cadastrar Nova Série</h2>
-            <form id="item-form">
-                <input type="hidden" id="edit-id" value="">
 
-                <div>
-                    <label for="item-name">Nome:</label>
-                    <input type="text" id="item-name" required>
+            <!-- adiciona e edita as listas -->
+            <div id="input-section">
+                <div id="form-container">
+                    <h2 id="form-title">Cadastrar Nova Série</h2>
+                    <form id="item-form">
+                        <input type="hidden" id="edit-id" value="">
+                        <div>
+                            <label for="item-name" id="label-nm">Nome:</label><br>
+                            <input type="text" id="item-name" required>
+                        </div>
+                        <div>
+                            <button type="submit" id="save-btn">Salvar</button>
+                            <button type="button" id="cancel-btn" style="display:none">Cancelar</button>
+                        </div>
+                    </form>
                 </div>
+            </div>
 
-                <div>
-                    <button type="submit" id="save-btn">Salvar</button>
-                    <button type="button" id="cancel-btn" style="display:none">Cancelar</button>
-                </div>
-            </form>
-        </div>
-
-        <!-- exibe a lista -->
-        <div id="list-container">
-            <h2 id="list-title">Lista de Séries</h2>
-            <div id="item-list"></div>
+            <br> <br>
+            <!-- exibe a lista -->
+            <div id="list-container">
+                <h2 id="list-title">Lista de Séries</h2>
+                <div id="item-list"></div>
+            </div>
         </div>
     </div>
 

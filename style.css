@@ -18,7 +18,6 @@
     * {
         margin: 0;
         padding: 0;
-        border: 0;
 
         box-sizing: border-box;
     }
@@ -36,285 +35,87 @@
         height: 100vh;
     } */
 
-    main {
-        max-width: 1200px;
-        margin: auto;
-        margin-top: 100px;
 
-    }
 
-    #main input {
-        border-radius: 20px;
-        margin-bottom: 10px;
-    }
-
-    main>h1 {
+    #white-board {
+        /*         background-color: white;
+ */
+        padding: 30px;
+        background-color: var(--cor-6);
+        /*         border-radius: 30px;
+ */
+        width: 1300px;
         color: white;
+        margin: auto;
+    }
+
+    #white-board>h1 {
         text-align: center;
-        font-size: 4em;
-        margin-bottom: 20px;
     }
 
-    input {
-        background-color: #0c151d;
-        width: 100%;
+    #tabs>button {
         padding: 20px;
-        border-radius: 40px 40px 0px 0px;
-        color: var(--cor-1);
-
+        border-radius: 7px;
     }
 
-    input:focus {
-        border: 0px;
-        outline: none;
-        color: var(--cor-1);
-
+    #label-nm {
+        text-transform: uppercase;
     }
-
-    input::placeholder {
-        padding-left: 1px;
-        font-size: 1.2em;
-        color: var(--cor-1);
-    }
-
-    #input>span {
-        position: relative;
-        left: 600px;
-        background-color: white;
-        color: var(--cor-2);
-        display: inline-block;
-        padding: 19px;
-        bottom: 56px;
-        border-radius: 0px 40px 40px 0px;
-        transition: 0.5s ease-in-out;
-    }
-
-    #input>span:hover {
-        background-color: rgb(107, 107, 107);
-        color: black;
-    }
-
-    /* ------------ */
-
-    #div-line {
-
-        width: 450px;
-        height: 1px;
-        margin: 20px auto;
-        margin-top: 5 0px;
+    h1 {
+        margin-top: 50px;
+        text-align: center;
+        color: white;
+        font-size: 2.5em;
         margin-bottom: 20px;
+    }
+    #item-name
+
+    /* input  */
+        {
+        border: 0;
+        border-bottom: 1px solid black;
+        width: 500px;
+    }
+
+    #div-line-2 {
+        width: 600px;
+        margin: auto;
+        height: 1px;
+
+        margin-top: 2px;
+
         background-color: #4e4e4e;
     }
 
-    .tarefa h2 {
-        font-size: 2.2em;
-        text-decoration: underline;
-    }
-
-    /* ------------ */
-
-
-    /* ----------- */
-
-    /*   .tarefa {
+    table {
+        border-left: 0;
+        border-right: 0;
         background-color: var(--cor-7);
-        width: 80%;
-        margin: auto;
-        color: var(--cor-1);
-        display: flex;
-        justify-content: space-between;
-        padding: 30px;
-        border-radius: 40px;
-    }
-
-    .tarefa p {
-        font-size: 1.3em;
-    }
-
-    .tarefa span {
-        font-size: 2.2em;
-        margin-left: 10px;
-        transition: 0.5s ease-in-out;
 
     }
 
-    .tarefa span:hover {
-        cursor: pointer;
-        color: var(--cor-4);
+    td {
+        padding: 10px;
+        border: 0;
+        border-radius: 20px;
     }
- */
+th {
+}
+        {}
 
-    /* .tarefa a {
-        text-decoration: none;
-        color: var(--cor-1);
-
-    } */
-
-
-    /* -0--------------------- */
-
-
-    .button-section {
-        display: flex;
-
+    #input-section {
+        border: 1px solid black;
+        padding: 20px;
+        border-radius: 10px;
+        margin-top: 10px;
     }
 
-    .button-section>button {
-        width: 50%;
-        border-radius: 0px 0px 0px 20px;
+    table button {
+        border: 0px;
         padding: 10px;
         background-color: var(--cor-1);
         color: white;
-        transition: 0.5s ease-in-out;
-        margin-top: -10px;
-
-    }
-
-    .button-section>button:hover {
-        background-color: var(--cor-6);
-
-    }
-
-    #but2 {
-        border-radius: 0px 0px 20px 0px;
-    }
-
-    /* --------------- */
-    #lista1,
-    #lista2,
-    #lista3 {
-        background-color: var(--cor-7);
-        width: 50%;
-        margin: auto;
-        color: var(--cor-1);
-        padding: 30px;
-        border-radius: 40px;
-        min-height: 1000px;
-        margin-bottom: 80px;
-    }
-
-    /* lista 1 */
-    #lista1 li {
-        display: block;
+        border-radius: 5px;
+        width: 100%;
         margin-top: 10px;
-        font-size: 1.3em;
-    }
-
-    #lista1 button {
-        transition: 0.5s ease-in-out;
-        background-color: #0c151d;
-        color: var(--cor-1);
-        font-size: 0.9em;
-    }
-
-    #lista1 button:hover {
-        cursor: pointer;
-        color: var(--cor-4);
-    }
-
-    /*  lista 2 */
-    #lista2 li {
-        display: block;
-        margin-top: 10px;
-        font-size: 1.5em;
-    }
-
-    #lista2 button {
-        transition: 0.5s ease-in-out;
-        background-color: #0c151d;
-        color: var(--cor-1);
-        display: inline;
-        text-align: right;
-    }
-
-    #lista2 button:hover {
-        cursor: pointer;
-        color: var(--cor-4);
-    }
-
-    /* listaaa  3 */
-    #lista3 li {
-        display: block;
-        margin-top: 10px;
-        font-size: 1.3em;
-    }
-
-    #lista3 button {
-        transition: 0.5s ease-in-out;
-        background-color: #0c151d;
-        color: var(--cor-1);
-        display: inline;
-        text-align: right;
-    }
-
-    #lista3 button:hover {
-        cursor: pointer;
-        color: var(--cor-4);
-    }
-
-    /* Extra */
-    .listas {
-        height: 10px;
-    }
-
-    /* ------------------------- */
-
-
-    #inputImagem {
-        cursor: pointer;
-
-    }
-
-    #inputImagem::-webkit-file-upload-button {
-        background: var(--cor-1);
-        color: black;
-        padding: 8px 16px;
-        border: none;
-        border-radius: 8px;
-        cursor: pointer;
-        font-weight: bold;
-    }
-
-    /* --------------- NOVOS ESTILOS ------------ */
-
-    #list-container {
-        background-color: white;
-    }
-
-    /* ---------------------- Media Queries... */
-
-    @media screen and (max-width: 836px) {
-
-        .tarefa {
-            flex-flow: column;
-            gap: 0px;
-
-        }
-
-        #lista1,
-        #lista2,
-        #lista3 {
-            margin-bottom: 40px;
-            width: 100%;
-            height: 400px;
-        }
-
-            {}
-
-        .tarefa>ul>h2 {
-            font-size: 1.3em;
-        }
-
-        .container h1 {
-            margin-top: -70px;
-            font-size: 2.5em;
-        }
-    }
-
-
-    @media screen and (max-width: 836px) {
-        .container h1 {
-            margin-top: -70px;
-            font-size: 2.3em;
-        }
     }
