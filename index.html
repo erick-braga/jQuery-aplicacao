@@ -1,40 +1,46 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sistema de Gerenciamento de Listas</title>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
     <div id="container">
+
         <h1>Sistema de Gerenciamento de Listas</h1>
-        
+
         <!-- naveega nas lsitas -->
-        <div id="tabs">
-            <button id="tab-series">Séries</button>
-            <button id="tab-games">Games</button>
-            <button id="tab-musics">Músicas</button>
+        <div id="input">
+
+            <div id="tabs">
+                <button id="tab-series">Séries</button>
+                <button id="tab-games">Games</button>
+                <button id="tab-musics">Músicas</button>
+            </div>
         </div>
-        
         <!-- adiciona e edita as listas -->
         <div id="form-container">
             <h2 id="form-title">Cadastrar Nova Série</h2>
             <form id="item-form">
                 <input type="hidden" id="edit-id" value="">
-                
+
                 <div>
                     <label for="item-name">Nome:</label>
                     <input type="text" id="item-name" required>
                 </div>
-                
+
                 <div>
                     <button type="submit" id="save-btn">Salvar</button>
                     <button type="button" id="cancel-btn" style="display:none">Cancelar</button>
                 </div>
             </form>
         </div>
-        
+
         <!-- exibe a lista -->
         <div id="list-container">
             <h2 id="list-title">Lista de Séries</h2>
@@ -43,112 +49,112 @@
     </div>
 
     <script>
-        $(document).ready(function() {
+        $(document).ready(function () {
             // guarda as listas no formato json 
             let series = JSON.parse(localStorage.getItem('series')) || [];
             let games = JSON.parse(localStorage.getItem('games')) || [];
             let musics = JSON.parse(localStorage.getItem('musics')) || [];
-            
+
             // seleciona oque ver ou edita
             let currentTab = 'series';
             let editingId = null;
-            
+
             init();
-            
+
             // no momento em que vlica nas abas
-            $('#tab-series').click(function() {
+            $('#tab-series').click(function () {
                 switchTab('series');
             });
-            
-            $('#tab-games').click(function() {
+
+            $('#tab-games').click(function () {
                 switchTab('games');
             });
-            
-            $('#tab-musics').click(function() {
+
+            $('#tab-musics').click(function () {
                 switchTab('musics');
             });
-            
+
             // invia o formulario
-            $('#item-form').submit(function(e) {
+            $('#item-form').submit(function (e) {
                 e.preventDefault();
                 saveItem();
             });
-            
+
             // botao de cancelar envio
-            $('#cancel-btn').click(function() {
+            $('#cancel-btn').click(function () {
                 cancelEdit();
             });
-            
+
             function init() {
                 updateList();
             }
-            
+
             function switchTab(tab) {
                 currentTab = tab;
-                
+
                 // atualiza o titulo
                 $('#form-title').text('Cadastrar Nova ' + getTabDisplayName());
                 $('#list-title').text('Lista de ' + getTabDisplayName());
-                
+
                 clearForm();
                 updateList();
             }
-            
+
             function getTabDisplayName() {
-                switch(currentTab) {
+                switch (currentTab) {
                     case 'series': return 'Série';
                     case 'games': return 'Game';
                     case 'musics': return 'Música';
                     default: return '';
                 }
             }
-            
+
             function saveItem() {
                 const name = $('#item-name').val().trim();
-                
+
                 if (!name) {
                     alert('Por favor, preencha o nome.');
                     return;
                 }
-                
+
                 const itemData = {
                     id: editingId || Date.now().toString(),
                     name: name
                 };
-                
+
                 // verifica se esta editando ou inserindo
                 if (editingId) {
                     updateItem(itemData);
                 } else {
                     addItem(itemData);
                 }
-                
+
                 clearForm();
                 updateList();
             }
-            
+
             function addItem(itemData) {
                 const list = getCurrentList();
                 list.push(itemData);
                 saveCurrentList(list);
                 alert(getTabDisplayName() + ' adicionado com sucesso!');
             }
-            
+
             function updateItem(itemData) {
                 const list = getCurrentList();
                 const index = list.findIndex(item => item.id === itemData.id);
-                
+
                 if (index !== -1) {
                     list[index] = itemData;
                     saveCurrentList(list);
                     alert(getTabDisplayName() + ' atualizado com sucesso!');
                 }
-                
+
                 editingId = null;
                 $('#save-btn').text('Salvar');
                 $('#cancel-btn').hide();
             }
-            
+
             function deleteItem(id) {
                 if (confirm('Tem certeza que deseja excluir este item?')) {
                     const list = getCurrentList();
@@ -158,77 +164,77 @@
                     alert(getTabDisplayName() + ' excluído com sucesso!');
                 }
             }
-            
+
             function editItem(id) {
                 const list = getCurrentList();
                 const item = list.find(item => item.id === id);
-                
+
                 if (item) {
                     // coloca os dados no formmulario
                     $('#edit-id').val(item.id);
                     $('#item-name').val(item.name);
-                    
+
                     // vai para o modo de edição
                     editingId = id;
                     $('#save-btn').text('Atualizar');
                     $('#cancel-btn').show();
                 }
             }
-            
+
             function cancelEdit() {
                 editingId = null;
                 clearForm();
                 $('#save-btn').text('Salvar');
                 $('#cancel-btn').hide();
             }
-            
+
             function clearForm() {
                 $('#item-form')[0].reset();
                 $('#edit-id').val('');
             }
-            
+
             function getCurrentList() {
-                switch(currentTab) {
+                switch (currentTab) {
                     case 'series': return series;
                     case 'games': return games;
                     case 'musics': return musics;
                     default: return [];
                 }
             }
-            
+
             function saveCurrentList(list) {
-                switch(currentTab) {
-                    case 'series': 
+                switch (currentTab) {
+                    case 'series':
                         series = list;
                         localStorage.setItem('series', JSON.stringify(series));
                         break;
-                    case 'games': 
+                    case 'games':
                         games = list;
                         localStorage.setItem('games', JSON.stringify(games));
                         break;
-                    case 'musics': 
+                    case 'musics':
                         musics = list;
                         localStorage.setItem('musics', JSON.stringify(musics));
                         break;
                 }
             }
-            
+
             function updateList() {
                 const list = getCurrentList();
                 const $listContainer = $('#item-list');
                 $listContainer.empty();
-                
+
                 if (list.length === 0) {
                     $listContainer.html('<p>Nenhum item cadastrado.</p>');
                     return;
                 }
-                
+
                 // cria a tabela
                 const $table = $('<table border="1" cellpadding="8" cellspacing="0" style="width:100%;border-collapse:collapse;"></table>');
-                
+
                 // cabeçario
                 $table.append('<tr><th>Nome</th><th>Ações</th></tr>');
-                
+
                 // adiciona os itens
                 list.forEach(item => {
                     const rowHTML = `<tr>
@@ -238,17 +244,18 @@
                             <button onclick="deleteItem('${item.id}')">Excluir</button>
                         </td>
                     </tr>`;
-                    
+
                     $table.append(rowHTML);
                 });
-                
+
                 $listContainer.append($table);
             }
-            
+
             // deixa as funções disponiveis globalmentwe
             window.editItem = editItem;
             window.deleteItem = deleteItem;
         });
     </script>
 </body>
+
 </html>
